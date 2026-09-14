@@ -1,3 +1,9 @@
+/**
+ * Store that loads test attempts together with their student and test data.
+ *
+ * Records are grouped by test title so the attempts grid can display each
+ * evaluation under its corresponding test.
+ */
 Ext.define('EvalApp.store.TestAttempts', {
     extend: 'EvalApp.store.baseStore',
 

@@ -1,3 +1,4 @@
+// Aggregate the feature routers under the main API router.
 const express = require('express');
 
 
@@ -10,6 +11,7 @@ const express = require('express');
 
     const router = express.Router();
 
+// Health endpoint for infrastructure or client availability checks.
 router.get('/health', (req, res) => {
     res.json({
         success: true,

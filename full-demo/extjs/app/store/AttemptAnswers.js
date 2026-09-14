@@ -1,3 +1,9 @@
+/**
+ * Store containing the question and answer details for a test attempt.
+ *
+ * The proxy URL is assigned by the view at runtime because it depends on the
+ * attempt currently being displayed.
+ */
 Ext.define('EvalApp.store.AttemptAnswers', {
     extend: 'EvalApp.store.baseStore',
 

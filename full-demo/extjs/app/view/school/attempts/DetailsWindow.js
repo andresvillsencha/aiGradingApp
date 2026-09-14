@@ -1,3 +1,9 @@
+/**
+ * Window that combines the overview and answer details for one test attempt.
+ *
+ * The selected attempt record is passed to both child panels during component
+ * initialization.
+ */
 Ext.define('EvalApp.view.school.attempts.DetailsWindow', {
     extend: 'Ext.window.Window',
 
@@ -37,11 +43,22 @@ Ext.define('EvalApp.view.school.attempts.DetailsWindow', {
     buttons: [{
         text: 'Close',
 
+        /**
+         * Closes the attempt details window.
+         *
+         * @param {Ext.button.Button} button Close button that fired the handler.
+         * @returns {void}
+         */
         handler: function (button) {
             button.up('window').close();
         }
     }],
 
+    /**
+     * Initializes the window title and passes the selected attempt to both tabs.
+     *
+     * @returns {void}
+     */
     initComponent: function () {
         var me = this,
             record = me.attemptRecord;

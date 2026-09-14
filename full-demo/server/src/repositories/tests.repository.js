@@ -1,5 +1,10 @@
 const { pool } = require("../config/database");
 
+/**
+ * Retrieves all tests together with the number of questions in each test.
+ *
+ * @returns {Promise<Array<object>>} Test rows returned by MySQL.
+ */
 async function findAll() {
     const sql = `
         SELECT
@@ -20,6 +25,12 @@ async function findAll() {
     return rows;
 }
 
+/**
+ * Retrieves one test and its question count by ID.
+ *
+ * @param {number|string} id - Test identifier.
+ * @returns {Promise<object|null>} Matching test, or null when not found.
+ */
 async function findById(id) {
     const sql = `
         SELECT

@@ -1,3 +1,4 @@
+// Configure the Express application, global middleware, API routes, and static file access.
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Basic root endpoint used to confirm that the API process is running.
 app.get('/', (req, res) => {
     res.json({
         success: true,

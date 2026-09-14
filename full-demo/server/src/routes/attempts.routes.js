@@ -1,3 +1,4 @@
+// Define HTTP endpoints for test attempts, answers, and AI grading.
 
 const express = require("express");
 

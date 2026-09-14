@@ -1,3 +1,4 @@
+// Load configuration, verify infrastructure dependencies, and start the HTTP server.
 require('dotenv').config();
 
 const app = require('./app');
@@ -7,6 +8,11 @@ const { testConnection } = require("./config/database");
 
 const port = process.env.PORT || 3000;
 
+/**
+ * Starts the API only after the database connection has been verified.
+ *
+ * @returns {Promise<void>} Resolves after the startup sequence completes.
+ */
 async function startServer() {
     try {
         await testConnection();

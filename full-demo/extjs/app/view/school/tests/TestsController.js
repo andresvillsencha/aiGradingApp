@@ -1,3 +1,9 @@
+/**
+ * View controller for the Tests grid and related test windows.
+ *
+ * Handles opening create/edit windows, displaying test questions, and the
+ * current placeholder save flow.
+ */
 Ext.define('EvalApp.view.school.tests.TestsController', {
     extend: 'Ext.app.ViewController',
 
@@ -8,6 +14,11 @@ Ext.define('EvalApp.view.school.tests.TestsController', {
 
     alias: 'controller.tests',
 
+    /**
+     * Opens an empty test form in create mode.
+     *
+     * @returns {void}
+     */
     onNewTest: function () {
         Ext.create('EvalApp.view.school.tests.TestWindow', {
             title: 'New Test',
@@ -15,6 +26,13 @@ Ext.define('EvalApp.view.school.tests.TestsController', {
         }).show();
     },
 
+    /**
+     * Opens the test form in edit mode and loads the selected record into it.
+     *
+     * @param {Ext.grid.Panel} grid Grid containing the selected test.
+     * @param {Number} rowIndex Index of the selected row in the grid store.
+     * @returns {void}
+     */
     onEditTest: function (grid, rowIndex) {
         var record = grid.getStore().getAt(rowIndex);
 
@@ -28,6 +46,13 @@ Ext.define('EvalApp.view.school.tests.TestsController', {
         win.show();
     },
 
+    /**
+     * Opens the questions window for the selected test.
+     *
+     * @param {Ext.grid.Panel} grid Grid containing the selected test.
+     * @param {Number} rowIndex Index of the selected row in the grid store.
+     * @returns {void}
+     */
     onViewQuestions: function (grid, rowIndex) {
         var record = grid.getStore().getAt(rowIndex);
 
@@ -36,6 +61,15 @@ Ext.define('EvalApp.view.school.tests.TestsController', {
         }).show();
     },
 
+    /**
+     * Validates the test form and branches between create and update behavior.
+     *
+     * The API calls are currently placeholders; the existing implementation only
+     * logs the submitted values.
+     *
+     * @param {Ext.button.Button} button Save button inside the test window.
+     * @returns {void}
+     */
     onSaveTest: function (button) {
         var win = button.up('window'),
             form = win.down('form').getForm();

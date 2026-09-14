@@ -1,3 +1,9 @@
+/**
+ * Shared base store for application stores.
+ *
+ * Provides common paging, sorting, and auto-load behavior inherited by the
+ * application-specific stores.
+ */
 Ext.define('EvalApp.store.baseStore', {
     extend: 'Ext.data.Store',
 

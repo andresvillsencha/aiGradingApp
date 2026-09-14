@@ -1,3 +1,4 @@
+// Define HTTP endpoints for student retrieval operations.
 
 const express = require("express");
 

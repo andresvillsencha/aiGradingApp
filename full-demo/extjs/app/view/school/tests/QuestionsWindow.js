@@ -1,3 +1,9 @@
+/**
+ * Window that displays all questions belonging to a selected test.
+ *
+ * The selected test record is supplied through `testRecord`; its identifier is
+ * used to build the questions endpoint when the window is initialized.
+ */
 Ext.define('EvalApp.view.school.tests.QuestionsWindow', {
     extend: 'Ext.window.Window',
 
@@ -17,6 +23,14 @@ Ext.define('EvalApp.view.school.tests.QuestionsWindow', {
 
     testRecord: null,
     
+    /**
+     * Initializes the window for the supplied test record.
+     *
+     * Builds the test-specific questions endpoint, configures the grid, and then
+     * calls the parent component initialization.
+     *
+     * @returns {void}
+     */
     initComponent: function () {
         var me = this,
             testId = me.testRecord.get('id'),
@@ -28,6 +42,13 @@ Ext.define('EvalApp.view.school.tests.QuestionsWindow', {
             xtype: 'grid',
 
             listeners: {
+                /**
+                 * Opens the details window for the question that was double-clicked.
+                 *
+                 * @param {Ext.view.View} grid Grid view that fired the event.
+                 * @param {Ext.data.Model} record Question record that was selected.
+                 * @returns {void}
+                 */
                 itemdblclick: function (grid, record) {
                     Ext.create('EvalApp.view.school.tests.QuestionDetailsWindow', {
                         questionRecord: record
@@ -92,6 +113,12 @@ Ext.define('EvalApp.view.school.tests.QuestionsWindow', {
         me.buttons = [{
             text: 'Close',
 
+            /**
+             * Closes the questions window.
+             *
+             * @param {Ext.button.Button} button Close button that fired the handler.
+             * @returns {void}
+             */
             handler: function (button) {
                 button.up('window').close();
             }

@@ -1,5 +1,10 @@
 const { pool } = require("../config/database");
 
+/**
+ * Retrieves all students ordered by ID.
+ *
+ * @returns {Promise<Array<object>>} Student rows returned by MySQL.
+ */
 async function findAll() {
     const sql = `
         SELECT
@@ -13,6 +18,12 @@ async function findAll() {
     return rows;
 }
 
+/**
+ * Retrieves one student by ID.
+ *
+ * @param {number|string} id - Student identifier.
+ * @returns {Promise<object|null>} Matching student, or null when not found.
+ */
 async function findById(id) {
     const sql = `
         SELECT

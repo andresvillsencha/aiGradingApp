@@ -1,3 +1,9 @@
+/**
+ * Grid panel that displays each answer submitted for a test attempt.
+ *
+ * The selected attempt is supplied through `attemptRecord`; during component
+ * initialization the panel builds the answer endpoint and loads its store.
+ */
 Ext.define('EvalApp.view.school.attempts.AnswersPanel', {
     extend: 'Ext.grid.Panel',
 
@@ -24,6 +30,12 @@ Ext.define('EvalApp.view.school.attempts.AnswersPanel', {
                 '<p><b>Feedback:</b><br>{feedback}</p>',
                 '<p><b>Reference:</b><br>{reference_answer}</p>',
                 {
+                    /**
+                     * Chooses the answer text color according to its score.
+                     *
+                     * @param {Number} score Score assigned to the answer.
+                     * @returns {String} Hex color used by the expanded-row template.
+                     */
                     colorAnswer: function (score) {
                         return (score>=7) ? "#396" : "#933";
                     }
@@ -65,6 +77,14 @@ Ext.define('EvalApp.view.school.attempts.AnswersPanel', {
         width: 80,
         align: 'center',
 
+        /**
+         * Formats an answer score together with the question's maximum score.
+         *
+         * @param {Number} value Score awarded to the answer.
+         * @param {Object} a Grid renderer metadata argument.
+         * @param {Ext.data.Model} row Answer record being rendered.
+         * @returns {String} HTML representation of the score.
+         */
         renderer: function (value, a, row) {
             let maxScore = row.get('max_score') || '-';
             let newValue = (value === null || value === undefined) ? "-" : value;
@@ -78,6 +98,12 @@ Ext.define('EvalApp.view.school.attempts.AnswersPanel', {
         width: 100,
         align: 'center',
 
+        /**
+         * Converts the grading status into styled text for the grid.
+         *
+         * @param {String} value Current grading status.
+         * @returns {String} Styled status text.
+         */
         renderer: function (value) {
             if (value === 'graded') {
                 return '<b style="color:#396;">Graded</b>';
@@ -103,6 +129,11 @@ Ext.define('EvalApp.view.school.attempts.AnswersPanel', {
         handler: 'refreshDetailsWindow'
     }],
 
+    /**
+     * Initializes the panel for the selected attempt and configures its store URL.
+     *
+     * @returns {void}
+     */
     initComponent: function () {
         let me = this,
             attemptId = me.attemptRecord.get('id');

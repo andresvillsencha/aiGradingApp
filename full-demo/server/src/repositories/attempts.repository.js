@@ -1,5 +1,10 @@
 const { pool } = require("../config/database");
 
+/**
+ * Retrieves all test attempts with the related test title and student name.
+ *
+ * @returns {Promise<Array<object>>} Rows returned by MySQL.
+ */
 async function findAll() {
     const sql = `
         SELECT
@@ -19,6 +24,12 @@ async function findAll() {
     return rows;
 }
 
+/**
+ * Retrieves one test attempt with its related test and student data.
+ *
+ * @param {number|string} id - Test-attempt identifier.
+ * @returns {Promise<object|null>} Matching attempt, or null when not found.
+ */
 async function findById(id) {
     const sql = `
         SELECT
@@ -40,6 +51,13 @@ async function findById(id) {
     return rows[0] || null;
 }
 
+/**
+ * Persists the final grade and status for a test attempt.
+ *
+ * @param {number|string} attemptId - Test-attempt identifier.
+ * @param {object} evaluation - Calculated score, maximum score, percentage, and pass status.
+ * @returns {Promise<void>} Resolves after the UPDATE completes.
+ */
 async function saveGrade(attemptId, evaluation) {
 
     const sql = `

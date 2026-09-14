@@ -1,3 +1,6 @@
+/**
+ * Store that loads student records from the Node.js REST API.
+ */
 Ext.define('EvalApp.store.Students', {
     extend: 'EvalApp.store.baseStore',
 

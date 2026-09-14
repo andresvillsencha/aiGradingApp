@@ -1,3 +1,9 @@
+/**
+ * Form window used to create or edit a test.
+ *
+ * The `mode` config indicates whether the form represents a new or existing
+ * test. Saving is delegated to the Tests controller.
+ */
 Ext.define('EvalApp.view.school.tests.TestWindow', {
     extend: 'Ext.window.Window',
     xtype: 'test-window',
@@ -61,6 +67,12 @@ Ext.define('EvalApp.view.school.tests.TestWindow', {
     buttons: [{
         text: 'Cancel',
 
+        /**
+         * Closes the test form without saving.
+         *
+         * @param {Ext.button.Button} button Cancel button that fired the handler.
+         * @returns {void}
+         */
         handler: function (button) {
             button.up('window').close();
         }

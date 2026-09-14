@@ -1,3 +1,9 @@
+/**
+ * Grid used to browse tests returned by the backend.
+ *
+ * Provides actions for creating/editing tests and viewing the questions that
+ * belong to a selected test.
+ */
 Ext.define('EvalApp.view.school.tests.TestsView', {
     extend: 'Ext.grid.Panel',
     xtype: 'tests-view',
@@ -38,6 +44,12 @@ Ext.define('EvalApp.view.school.tests.TestsView', {
         dataIndex: 'passing_score',
         width: 120,
         align: 'center',
+        /**
+         * Formats the numeric passing score as a percentage for display.
+         *
+         * @param {Number} value Passing score value from the record.
+         * @returns {String} Display value with a percent sign.
+         */
         renderer: function (value) {
             return value + '%';
         }
@@ -51,6 +63,12 @@ Ext.define('EvalApp.view.school.tests.TestsView', {
         dataIndex: 'status',
         width: 100,
         align: 'center',
+        /**
+         * Converts the test status into styled HTML for the grid cell.
+         *
+         * @param {String} value Test status value.
+         * @returns {String} HTML representing the active/inactive status.
+         */
         renderer: function (value) {
             if (value === 'active') {
                 return '<b style="color:#396;">Active</b>';

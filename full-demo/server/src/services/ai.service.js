@@ -86,6 +86,13 @@ const systemPrompt = `
  * @param {*} jdFile 
  * @returns 
  */
+/**
+ * Compares a candidate resume against a job description using OpenAI, then parses the model JSON response.
+ *
+ * @param {string} resumeFile - Filename of the resume under `files/resume`.
+ * @param {string} jdFile - Filename of the job description under `files/jd`.
+ * @returns {Promise<object>} Parsed candidate/job-description evaluation returned by the model.
+ */
 async function validateResume(resumeFile, jdFile) {
     // Read Files
         const resumePath = path.resolve("./files/resume", resumeFile);

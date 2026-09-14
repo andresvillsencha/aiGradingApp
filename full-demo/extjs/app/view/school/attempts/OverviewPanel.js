@@ -1,3 +1,9 @@
+/**
+ * Summary form for the currently selected test attempt.
+ *
+ * Displays student, test, status, timing, and grading information. Actions in
+ * the toolbar are handled by the test-attempts controller.
+ */
 Ext.define('EvalApp.view.school.attempts.OverviewPanel', {
     extend: 'Ext.form.Panel',
 

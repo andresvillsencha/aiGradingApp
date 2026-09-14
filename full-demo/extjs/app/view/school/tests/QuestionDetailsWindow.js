@@ -1,3 +1,8 @@
+/**
+ * Read-only detail window for a single test question.
+ *
+ * The question to display is supplied through `questionRecord`.
+ */
 Ext.define('EvalApp.view.school.tests.QuestionDetailsWindow', {
     extend: 'Ext.window.Window',
 
@@ -14,6 +19,11 @@ Ext.define('EvalApp.view.school.tests.QuestionDetailsWindow', {
 
     questionRecord: null,
 
+    /**
+     * Initializes the detail form from the supplied question record.
+     *
+     * @returns {void}
+     */
     initComponent: function () {
         var me = this,
             record = me.questionRecord;
@@ -63,6 +73,12 @@ Ext.define('EvalApp.view.school.tests.QuestionDetailsWindow', {
         me.buttons = [{
             text: 'Close',
 
+            /**
+             * Closes the question detail window.
+             *
+             * @param {Ext.button.Button} button Close button that fired the handler.
+             * @returns {void}
+             */
             handler: function (button) {
                 button.up('window').close();
             }

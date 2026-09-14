@@ -1,3 +1,4 @@
+// Create the shared MySQL connection pool used by repository modules.
 const mysql = require("mysql2/promise");
 
 console.log('Preparing DB connection');
@@ -16,6 +17,12 @@ const pool = mysql.createPool({
     decimalNumbers: true
 });
 
+/**
+ * Verifies that the MySQL pool can obtain a connection and communicate with the database.
+ *
+ * @returns {Promise<void>} Resolves after a successful database ping.
+ * @throws {Error} Propagates connection or ping failures.
+ */
 async function testConnection() {
     const connection = await pool.getConnection();
 

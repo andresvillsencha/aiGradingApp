@@ -1,5 +1,13 @@
 const service = require("../services/tests.service");
 
+/**
+ * Retrieves all records available through this controller.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @param {import("express").NextFunction} next - Callback used to pass errors to the next middleware.
+ * @returns {Promise<void>} Sends JSON containing the retrieved records.
+ */
 async function getAll(req, res, next) {
     try {
         const rows = await service.getAll();
@@ -14,6 +22,14 @@ async function getAll(req, res, next) {
     }
 }
 
+/**
+ * Retrieves a single record identified by the route parameter `id`.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @param {import("express").NextFunction} next - Callback used to pass errors to the next middleware.
+ * @returns {Promise<void>} Sends JSON containing the requested record.
+ */
 async function getById(req, res, next) {
     try {
         const rows = await service.getById(req.params.id);
@@ -27,6 +43,14 @@ async function getById(req, res, next) {
     }
 }
 
+/**
+ * Retrieves all questions belonging to the test identified by `id`.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @param {import("express").NextFunction} next - Callback used to pass errors to the next middleware.
+ * @returns {Promise<void>} Sends JSON containing the test questions.
+ */
 async function getQuestions(req, res, next) {
     try {
         const rows = await service.getQuestions(req.params.id);
@@ -41,6 +65,14 @@ async function getQuestions(req, res, next) {
     }
 }
 
+/**
+ * Retrieves one question from a test using `id` and `questionId`.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @param {import("express").NextFunction} next - Callback used to pass errors to the next middleware.
+ * @returns {Promise<void>} Sends JSON containing the requested question.
+ */
 async function getQuestion(req, res, next) {
     try {
         const { id, questionId } = req.params;
@@ -55,6 +87,13 @@ async function getQuestion(req, res, next) {
     }
 }
 
+/**
+ * Creates a new record using values from the request body.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @returns {Promise<void>} Sends the created record with HTTP 201 or an error response.
+ */
 async function createRow(req, res) {
     try {
         const row = await service.createRow(req.body);
@@ -73,6 +112,13 @@ async function createRow(req, res) {
     }
 }
 
+/**
+ * Updates the record identified by `id` using values from the request body.
+ *
+ * @param {import("express").Request} req - Express request object.
+ * @param {import("express").Response} res - Express response object.
+ * @returns {Promise<void>} Sends the updated record or an error response.
+ */
 async function updateRow(req, res) {
     try {
         const rowId = req.params.id;

@@ -1,3 +1,6 @@
+/**
+ * Grid that displays students loaded from the backend.
+ */
 Ext.define('EvalApp.view.school.students.StudentsView', {
     extend: 'Ext.grid.Panel',
     xtype: 'students-view',
@@ -37,6 +40,12 @@ Ext.define('EvalApp.view.school.students.StudentsView', {
         text: 'Active',
         dataIndex: 'active',
         width: 80,
+        /**
+         * Formats the student's active flag into a readable grid value.
+         *
+         * @param {*} value Active value stored on the student record.
+         * @returns {String} Human-readable active status.
+         */
         renderer: function (value) {
             return (value==1) ? '<b style="color:#396;">Active</b>' : '<b style="color:#933;">Not Active</b>'
         }

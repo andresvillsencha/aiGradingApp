@@ -1,3 +1,9 @@
+/**
+ * Main grid for browsing test attempts.
+ *
+ * Supports grouping by test, local grid filters, formatted grading results, and
+ * opening the full details window for a selected attempt.
+ */
 Ext.define('EvalApp.view.school.attempts.TestAttemptsView', {
     extend: 'Ext.grid.Panel',
 
@@ -66,6 +72,12 @@ Ext.define('EvalApp.view.school.attempts.TestAttemptsView', {
             ]
         },
 
+        /**
+         * Converts the attempt status into styled HTML for the grid.
+         *
+         * @param {String} value Attempt status.
+         * @returns {String} Styled status text.
+         */
         renderer: function (value) {
             if (value === 'submitted') {
                 return '<b style="color:#369;">Submitted</b>';
@@ -91,6 +103,14 @@ Ext.define('EvalApp.view.school.attempts.TestAttemptsView', {
             type: 'number'
         },
 
+        /**
+         * Formats the awarded score against the attempt's maximum score.
+         *
+         * @param {Number|null} value Score value.
+         * @param {Object} a Grid renderer metadata argument.
+         * @param {Ext.data.Model} row Attempt record being rendered.
+         * @returns {String} Styled score HTML.
+         */
          renderer: function (value, a, row) {
             let maxScore = row.get('max_score') || 0;
             let newValue = (value === null || value === undefined) ? "-" : value;
@@ -122,6 +142,14 @@ Ext.define('EvalApp.view.school.attempts.TestAttemptsView', {
             type: 'boolean'
         },
 
+        /**
+         * Displays the final pass/fail result only after an attempt is graded.
+         *
+         * @param {Boolean} value Passed flag.
+         * @param {Object} meta Grid cell metadata.
+         * @param {Ext.data.Model} record Attempt record being rendered.
+         * @returns {String} Styled result text or an em dash before grading.
+         */
         renderer: function (value, meta, record) {
             if (record.get('status')==='graded') {
                 if (value === true) {

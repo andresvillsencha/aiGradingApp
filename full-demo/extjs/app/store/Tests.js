@@ -1,3 +1,6 @@
+/**
+ * Store that loads available tests and their question counts from the API.
+ */
 Ext.define('EvalApp.store.Tests', {
     extend: 'EvalApp.store.baseStore',
 

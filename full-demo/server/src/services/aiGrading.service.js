@@ -4,6 +4,12 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
+/**
+ * Sends a structured test-grading request to OpenAI and parses the structured JSON response.
+ *
+ * @param {object} gradingRequest - Attempt and question/answer data to grade.
+ * @returns {Promise<{result: object, aiResponse: object}>} Parsed grading result and original OpenAI response.
+ */
 async function gradeTest(gradingRequest) {
 
     const response = await openai.responses.create({

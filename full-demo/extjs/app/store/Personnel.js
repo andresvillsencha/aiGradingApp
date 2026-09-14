@@ -1,3 +1,6 @@
+/**
+ * In-memory sample store used by the default personnel grid.
+ */
 Ext.define('EvalApp.store.Personnel', {
     extend: 'Ext.data.Store',
 

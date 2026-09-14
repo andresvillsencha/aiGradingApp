@@ -3,6 +3,12 @@ const studentAnswersRepository = require("../repositories/student_answers.reposi
 const questionsRepository = require("../repositories/questions.repository");
 const aiGradingService = require("./aiGrading.service");
 
+/**
+ * Coordinates the grading workflow: loads answers, builds the AI request, calculates totals, and persists the grades.
+ *
+ * @param {object} attempt - Test-attempt record containing at least `id` and `test_id`.
+ * @returns {Promise<object>} Overall score, percentage, pass status, and per-answer grades.
+ */
 async function gradeAttempt(attempt) {
 
     console.log('Reading Answers');
